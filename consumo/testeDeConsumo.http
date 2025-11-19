@@ -1,0 +1,44 @@
+### Gerar Token para consumir os arquivos
+POST http://localhost:3000/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "admin",
+    "senha": "admin"
+}
+
+### Cria usuario
+POST http://localhost:3000/auth/criarUsuario HTTP/1.1
+content-type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2MzU3MDIyNSwiZXhwIjoxNzYzNTcwNTI1fQ.QmkF-X93j9_9ZpD0OU1RcBmh9z5Pn683xmXVzCBnAKA
+
+{
+    "username": "Lino",
+    "senha": "admin",
+    "nome_completo": "Alysson Lino"
+}
+
+### Criar proprietario
+POST http://localhost:3000/auth/criaProprietario HTTP/1.1
+content-type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2MzU2MzcxMSwiZXhwIjoxNzYzNTY0MDExfQ.ys2QRbcRhl8fkZKyQWkGesauNAC5EakC9TStJWm1Dmc
+
+{
+    "cpf": "111",
+    "nome": "Lino", 
+    "fone": "55555"
+}
+
+### Criar manutencao
+POST http://localhost:3000/auth/criaManutencao HTTP/1.1
+content-type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2MzU4NDIwNiwiZXhwIjoxNzYzNTg0NTA2fQ.zJC3n-jMys46m2KL0azz4xm6yUHINRvSMT_uk3_HS5k
+
+{
+    "id_veiculo": 21,
+    "id_servico": 2,
+    "data_servico": "2024-06-20",
+    "km": 15000,
+    "custo": 500.75,
+    "observacoes": "Troca de óleo e filtro"
+}

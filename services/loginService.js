@@ -27,6 +27,15 @@ export const loginService = {
 
     async create_new_user(username, password, fullname){
         return await loginModel.createUser(username, password, fullname);
+    },
+    async create_new_owner(cpf, nome, fone){
+        return await loginModel.createOwner(cpf, nome, fone);
+    },
+    async create_new_maintenance(id_veiculo, id_servico, data_servico, km, custo, observacoes){
+        return await loginModel.createMantenance(id_veiculo, id_servico, data_servico, km, custo, observacoes)
+    },
+    async create_new_vehicle(plca_veiculo, id_modelo, id_proprietario,preco_veiculo, id_tipo, ano){
+        return await loginModel.createVehicle(plca_veiculo, id_modelo, id_proprietario,preco_veiculo, id_tipo, ano)
     }
 }
 

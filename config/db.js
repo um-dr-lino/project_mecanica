@@ -6,7 +6,7 @@ let DB_HOST = process.env.DB_HOST || '127.0.0.1'
 let DB_USER = process.env.DB_USER || 'root'
 let DB_PASS = process.env.DB_PASS || ''
 let DB_NAME = process.env.DB_NAME || 'db_pecas' 
-let DB_PORT = process.env.DB_PORT || 8080
+let DB_PORT = process.env.DB_PORT || 3306
 
 const parsedPass = DB_PASS;
 

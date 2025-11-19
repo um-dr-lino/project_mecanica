@@ -15,7 +15,7 @@ export async function initDb() {
       host: DB_HOST,
       user: DB_USER,
       password: parsedPass,
-      port: DB_PORT ? Number(DB_PORT) : 8080,
+      port: DB_PORT ? Number(DB_PORT) : 3306,
     });
 
     await connection.query(`CREATE DATABASE IF NOT EXISTS \`${DB_NAME}\`;`);
@@ -24,6 +24,25 @@ export async function initDb() {
   } catch (err) {
     console.error('Não foi possível conectar ao servidor MySQL para criar o DB:', err.message);
     throw err; 
+  }
+
+   await pool.query(`
+    CREATE TABLE IF NOT EXISTS pecas (
+      id_peca INT AUTO_INCREMENT PRIMARY KEY,
+      nome_peca VARCHAR(100) NOT NULL,
+      descr_peca VARCHAR(255)
+    );
+  `);
+
+  const [rows] = await pool.query('SELECT COUNT(*) AS total FROM pecas');
+  if (rows[0].total === 0) {
+    await pool.query(`
+      INSERT INTO pecas (nome_peca, descr_peca)
+      VALUES 
+        ('Filtro de oleo', 'Filtro para motor 1.6'),
+        ('Pastilha de freio', 'Pastilha dianteira para veiculos compactos'),
+        ('Amortecedor', 'Amortecedor traseiro padrao');
+    `);
   }
 
   await pool.query(`
@@ -119,9 +138,9 @@ export async function initDb() {
   if (servCount[0].cnt === 0) {
     await pool.query(`
       INSERT INTO servico (nome_servico, descr_servico) VALUES
-        ('Troca de óleo', 'Troca de óleo do motor e filtro'),
+        ('Troca de oleo', 'Troca de oleo do motor e filtro'),
         ('Alinhamento', 'Alinhamento e balanceamento'),
-        ('Pastilhas de freio', 'Substituição das pastilhas dianteiras');
+        ('Pastilhas de freio', 'Substituicao das pastilhas dianteiras');
     `);
   }
 
@@ -180,7 +199,7 @@ export async function initDb() {
   console.log('Criando as procidures')
   const procedureFilePath = './sqls/procedure/procedure_users.sql';
   try {
-        const createProcedureSql = await fs.readFile(procedureFilePath, 'utf8');
+        const createProcedureSql = await fs.readFile(procedureFilePath, 'utf-8');
         await pool.query(createProcedureSql);
         console.log('Procedure carregada do arquivo e criada.');
     } catch (error) {
@@ -195,5 +214,15 @@ export async function initDb() {
       console.log('View carregada do arquivo e criada')
   }catch(err){
     console.error(`Error ao carregar ou executar a view do arquivo ${procedureFilePath}:`, err.message)
+  }
+
+  console.log('Criando triggers')
+  const triggerFilePath = './sqls/triggers/insert_owner.sql';
+  try{
+    const createTriggerSql = await fs.readFile(triggerFilePath, 'utf-8')
+    await pool.query(createTriggerSql);
+    console.log('Trigger carregada do arquivo e criada')
+  }catch(err){
+    console.error(`Error ao carregar ou executar a trigger do arquivo ${procedureFilePath}:`, err.message)
   }
 }
