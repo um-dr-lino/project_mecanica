@@ -62,6 +62,48 @@ export const loginService = {
     },
     async listar_manutencoes(){
         return await loginModel.getAllMaintenances();
+    },
+    async delete_user(id){
+        return await loginModel.deleteUser(id);
+    },
+    async delete_owner(id){
+        return await loginModel.deleteOwner(id);
+    },
+    async delete_vehicle(id){
+        return await loginModel.deleteVehicle(id);  
+    },
+    async delete_brand(id){
+        return await loginModel.deleteBrand(id);
+    },
+    async delete_model(id){
+        return await loginModel.deleteModel(id);
+    },
+    async delete_service(id){
+        return await loginModel.deleteService(id);
+    },
+    async delete_maintenance(id){
+        return await loginModel.deleteMaintenance(id);
+    },
+    async update_user(id, dados){
+        return await loginModel.updateUser(id, dados);
+    },
+    async update_owner(id, dados){
+        return await loginModel.updateOwner(id, dados);
+    },
+    async update_vehicle(id, dados){
+        return await loginModel.updateVehicle(id, dados);
+    },
+    async update_brand(id, dados){
+        return await loginModel.updateBrand(id, dados);
+    },
+    async update_model(id, dados){
+        return await loginModel.updateModel(id, dados);
+    },
+    async update_service(id, dados){
+        return await loginModel.updateService(id, dados);
+    },
+    async update_maintenance(id, dados){
+        return await loginModel.updateMaintenance(id, dados);
     }
 }
 

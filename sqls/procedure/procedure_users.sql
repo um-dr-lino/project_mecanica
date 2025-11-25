@@ -70,6 +70,156 @@ BEGIN
     INSERT INTO servico (descricao, preco) 
     VALUES (p_descricao, p_preco);
 END;
-
+DROP PROCEDURE IF EXISTS delete_user;
+CREATE PROCEDURE delete_user (
+    IN p_id INT(11)
+)
+BEGIN
+    DELETE FROM usuario WHERE id = p_id;
+END;
+DROP PROCEDURE IF EXISTS delete_owner;
+CREATE PROCEDURE delete_owner (
+    IN p_id INT(11)
+)
+BEGIN
+    DELETE FROM proprietario WHERE id = p_id;
+END;
+DROP PROCEDURE IF EXISTS delete_vehicle;
+CREATE PROCEDURE delete_vehicle (
+    IN p_id INT(11)
+)
+BEGIN
+    DELETE FROM veiculo WHERE id = p_id;
+END;
+DROP PROCEDURE IF EXISTS delete_brand;
+CREATE PROCEDURE delete_brand (
+    IN p_id INT(11)
+)
+BEGIN
+    DELETE FROM marca WHERE id = p_id;
+END;
+DROP PROCEDURE IF EXISTS delete_model;
+CREATE PROCEDURE delete_model (
+    IN p_id INT(11)
+)
+BEGIN
+    DELETE FROM modelo WHERE id = p_id;
+END;
+DROP PROCEDURE IF EXISTS delete_service;
+CREATE PROCEDURE delete_service (
+    IN p_id INT(11)
+)
+BEGIN
+    DELETE FROM servico WHERE id = p_id;
+END;
+DROP PROCEDURE IF EXISTS delete_manutenance;
+CREATE PROCEDURE delete_manutenance (
+    IN p_id INT(11)
+)
+BEGIN
+    DELETE FROM manutencao WHERE id = p_id;
+END;
+DROP PROCEDURE IF EXISTS update_user;
+CREATE PROCEDURE update_user (
+    IN p_id INT(11),
+    IN p_username VARCHAR(100),
+    IN p_senha VARCHAR(255),
+    IN p_nome_completo VARCHAR(150)
+)
+BEGIN
+    UPDATE usuario 
+    SET username = p_username,
+        senha = p_senha,
+        nome_completo = p_nome_completo
+    WHERE id_usuario = p_id;
+END;
+DROP PROCEDURE IF EXISTS update_owner;
+CREATE PROCEDURE update_owner (
+    IN p_id INT(11),
+    IN p_cpf INT(20),
+    IN p_nome VARCHAR(150),
+    IN p_fone VARCHAR(30)
+)
+BEGIN
+    UPDATE proprietario 
+    SET cpf = p_cpf,
+        nome = p_nome,
+        fone = p_fone
+    WHERE id_proprietario = p_id;
+END;
+DROP PROCEDURE IF EXISTS update_vehicle;
+CREATE PROCEDURE update_vehicle (
+    IN p_id INT(11),
+    IN p_plca_veiculo VARCHAR(10),
+    IN p_id_modelo INT(11),
+    IN p_id_proprietario INT(11),
+    IN p_preco_veiculo DECIMAL(12,2),
+    IN p_id_tipo INT(11), 
+    IN p_ano INT(11)
+)   
+BEGIN
+    UPDATE veiculo 
+    SET plca_veiculo = p_plca_veiculo,
+        id_modelo = p_id_modelo,
+        id_proprietario = p_id_proprietario,
+        preco_veiculo = p_preco_veiculo,
+        id_tipo = p_id_tipo,
+        ano = p_ano
+    WHERE id_veiculo = p_id;
+END;
+DROP PROCEDURE IF EXISTS update_brand;
+CREATE PROCEDURE update_brand (
+    IN p_id INT(11),
+    IN p_nome_marca VARCHAR(100)
+)
+BEGIN
+    UPDATE marca 
+    SET nome_marca = p_nome_marca
+    WHERE id_marca = p_id;
+END;
+DROP PROCEDURE IF EXISTS update_model;
+CREATE PROCEDURE update_model (
+    IN p_id INT(11),
+    IN p_nome_modelo VARCHAR(100),
+    IN p_id_marca INT(11)
+)
+BEGIN
+    UPDATE modelo 
+    SET nome_modelo = p_nome_modelo,
+        id_marca = p_id_marca
+    WHERE id_modelo = p_id;
+END;
+DROP PROCEDURE IF EXISTS update_service;
+CREATE PROCEDURE update_service (
+    IN p_id INT(11),
+    IN p_descricao VARCHAR(255),
+    IN p_preco DECIMAL(12,2)
+)
+BEGIN
+    UPDATE servico 
+    SET descricao = p_descricao,
+        preco = p_preco
+    WHERE id_servico = p_id;
+END;
+DROP PROCEDURE IF EXISTS update_manutenance;
+CREATE PROCEDURE update_manutenance (   
+    IN p_id INT(11),
+    IN p_id_veiculo INT(11),
+    IN p_id_servico INT(11),
+    IN p_data_servico DATE,
+    IN p_km INT(11),
+    IN p_custo DECIMAL(12,2), 
+    IN p_observaoces TEXT
+)   
+BEGIN
+    UPDATE manutencao 
+    SET id_veiculo = p_id_veiculo,
+        id_servico = p_id_servico,
+        data_servico = p_data_servico,
+        km = p_km,
+        custo = p_custo,
+        observacoes = p_observaoces
+    WHERE id_manutencao = p_id;
+END;
 
 

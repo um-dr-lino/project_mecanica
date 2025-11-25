@@ -24,7 +24,21 @@ router.get('/listarServicos', verificaJWT, loginController.listar_servicos)
 router.get('/listarManutencoes', verificaJWT, loginController.listar_manutencoes)
 
 // só os puts
+router.put('/atualizarUsuario/:id', verificaJWT, loginController.atualizarUsuario)
+router.put('/atualizarProprietario/:id', verificaJWT, loginController.atualizarProprietario)
+router.put('/atualizarVeiculo/:id', verificaJWT, loginController.atualizarVeiculo)
+router.put('/atualizarMarca/:id', verificaJWT, loginController.atualizarMarca)
+router.put('/atualizarModelo/:id', verificaJWT, loginController.atualizarModelo)
+router.put('/atualizarServico/:id', verificaJWT, loginController.atualizarServico)
+router.put('/atualizarManutencao/:id', verificaJWT, loginController.atualizarManutencao)
  
 // so os deletes
+router.delete('/deletarUsuario/:id', verificaJWT, loginController.deletarUsuario)
+router.delete('/deletarProprietario/:id', verificaJWT, loginController.deletarProprietario)
+router.delete('/deletarVeiculo/:id', verificaJWT, loginController.deletarVeiculo)
+router.delete('/deletarMarca/:id', verificaJWT, loginController.deletarMarca)
+router.delete('/deletarModelo/:id', verificaJWT, loginController.deletarModelo)
+router.delete('/deletarServico/:id', verificaJWT, loginController.deletarServico)
+router.delete('/deletarManutencao/:id', verificaJWT, loginController.deletarManutencao)
 
 export default router;

@@ -67,5 +67,120 @@ export const loginModel = {
   async getAllMaintenances(){
     const [rows] = await pool.query('SELECT * FROM getallmaintenances');
     return rows;
+  },
+  async deleteUser(id){
+    const sql = 'CALL delete_user(?)';
+    const [result] = await pool.query(sql,[id]);
+    return result;
+  },
+  async deleteOwner(id){
+    const sql = 'CALL delete_owner(?)';
+    const [result] = await pool.query(sql,[id]);
+    return result;
+  },
+  async deleteVehicle(id){
+    const sql = 'CALL delete_vehicle(?)';
+    const [result] = await pool.query(sql,[id]);
+    return result;  
+  },  
+  async deleteBrand(id){
+    const sql = 'CALL delete_brand(?)';
+    const [result] = await pool.query(sql,[id]);
+    return result;
+  },
+  async deleteModel(id){
+    const sql = 'CALL delete_model(?)';
+    const [result] = await pool.query(sql,[id]);
+    return result;
+  },
+  async deleteService(id){
+    const sql = 'CALL delete_service(?)';
+    const [result] = await pool.query(sql,[id]);
+    return result;
+  },
+  async deleteMaintenance(id){
+    const sql = 'CALL delete_maintenance(?)';
+    const [result] = await pool.query(sql,[id]);
+    return result;
+  },
+  async updateUser(id, dados) {
+    const sql = "CALL update_user(?, ?, ?, ?)";
+    const params = [
+        id,
+        dados.username || null,
+        dados.senha || null,
+        dados.nome_completo || null
+    ];
+
+    const [result] = await pool.query(sql, params);
+    return result;
+  },
+  async updateOwner(id, dados) {
+    const sql = "CALL update_owner(?, ?, ?)";
+    const params = [
+        id,
+        dados.cpf || null,
+        dados.nome || null,
+        dados.fone || null
+    ];
+    const [result] = await pool.query(sql, params);
+    return result;
+  },
+  async updateVehicle(id, dados) {
+    const sql = "CALL update_vehicle(?, ?, ?, ?, ?, ?, ?)";
+    const params = [
+        id,
+        dados.plca_veiculo || null,
+        dados.id_modelo || null,
+        dados.id_proprietario || null,
+        dados.preco_veiculo || null,
+        dados.id_tipo || null,
+        dados.ano || null
+    ];
+    const [result] = await pool.query(sql, params);
+    return result;
+  },
+  async updateBrand(id, dados) {
+    const sql = "CALL update_brand(?, ?)";
+    const params = [
+        id,
+        dados.nome_marca || null
+    ];
+    const [result] = await pool.query(sql, params);
+    return result;
+  },
+  async updateModel(id, dados) {
+    const sql = "CALL update_model(?, ?, ?)";
+    const params = [
+        id,
+        dados.nome_modelo || null,
+        dados.id_marca || null
+    ];
+    const [result] = await pool.query(sql, params);
+    return result;
+  },
+  async updateService(id, dados) {
+    const sql = "CALL update_service(?, ?, ?)";
+    const params = [
+        id,
+        dados.descricao || null,
+        dados.preco || null
+    ];
+    const [result] = await pool.query(sql, params);
+    return result;
+  },
+  async updateMaintenance(id, dados) {
+    const sql = "CALL update_maintenance(?, ?, ?, ?, ?, ?, ?)";   
+    const params = [
+        id,
+        dados.id_veiculo || null,
+        dados.id_servico || null,
+        dados.data_servico || null,
+        dados.km || null,
+        dados.custo || null,
+        dados.observacoes || null
+    ];
+    const [result] = await pool.query(sql, params);
+    return result;
   }
 }

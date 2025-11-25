@@ -179,5 +179,153 @@ export const loginController = {
         }catch(err){
             res.status(500).json({error: err.message})
         }
+    },
+    async deletarUsuario(req, res){
+        const {id} = req.params;
+        try{
+            await loginService.delete_user(id);
+            res.status(200).json({message: "Usuario deletado com sucesso!"})
+        }catch(err){
+            console.error("Erro ao deletar usuário:", err);
+            res.status(500).json({error: err.message})
+        }
+    },
+    async deletarProprietario(req, res){
+        const {id} = req.params;
+        try{
+            await loginService.delete_owner(id);
+            res.status(200).json({message: "Proprietario deletado com sucesso!"})
+        }catch(err){
+            console.error("Erro ao deletar proprietario:", err);
+            res.status(500).json({error: err.message})
+        }
+    },
+    async deletarVeiculo(req, res){
+        const {id} = req.params;
+        try{
+            await loginService.delete_vehicle(id);
+            res.status(200).json({message: "Veículo deletado com sucesso!"})
+        }catch(err){
+            console.error("Erro ao deletar veículo:", err);
+            res.status(500).json({error: err.message})
+        }
+    },
+    async deletarMarca(req, res){
+        const {id} = req.params;
+        try{
+            await loginService.delete_brand(id);
+            res.status(200).json({message: "Marca deletada com sucesso!"})
+        }catch(err){
+            console.error("Erro ao deletar marca:", err);
+            res.status(500).json({error: err.message})
+        }
+    },
+    async deletarModelo(req, res){
+        const {id} = req.params;
+        try{
+            await loginService.delete_model(id);
+            res.status(200).json({message: "Modelo deletado com sucesso!"})
+        }catch(err){
+            console.error("Erro ao deletar modelo:", err);
+            res.status(500).json({error: err.message})
+        }
+    },
+    async deletarServico(req, res){
+        const {id} = req.params;
+        try{
+            await loginService.delete_service(id);
+            res.status(200).json({message: "Serviço deletado com sucesso!"})
+        }catch(err){
+            console.error("Erro ao deletar serviço:", err);
+            res.status(500).json({error: err.message})
+        }
+    },
+    async deletarManutencao(req, res){
+        const {id} = req.params;
+        try{
+            await loginService.delete_maintenance(id);
+            res.status(200).json({message: "Manutenção deletada com sucesso!"})
+        }catch(err){
+            console.error("Erro ao deletar manutenção:", err);
+            res.status(500).json({error: err.message})
+        }
+    },
+    async atualizarUsuario(req, res) {
+    const { id } = req.params;
+    const dados = req.body;
+        try {
+            await loginService.update_user(id, dados);
+            res.status(200).json({ message: "Usuário atualizado com sucesso!" });
+        } catch (err) {
+            console.error("Erro ao atualizar usuário:", err);
+            res.status(500).json({ error: err.message });
+        }
+    },
+    async atualizarProprietario(req, res){
+        const {id} = req.params;
+        const dados = req.body;
+        try{
+            await loginService.update_owner(id, dados);
+            res.status(200).json({message: "Proprietario atualizado com sucesso!"})
+        }catch(err){
+            console.error("Erro ao atualizar proprietario:", err);
+            res.status(500).json({error: err.message})
+        }
+    },
+    async atualizarVeiculo(req, res){
+        const {id} = req.params;
+        const dados = req.body;
+        try{
+            await loginService.update_vehicle(id, dados);
+            res.status(200).json({message: "Veículo atualizado com sucesso!"})
+        }
+        catch(err){
+            console.error("Erro ao atualizar veículo:", err);
+            res.status(500).json({error: err.message})
+        }
+    },
+    async atualizarMarca(req, res){
+        const {id} = req.params;
+        const dados = req.body;
+        try{
+            await loginService.update_brand(id, dados);
+            res.status(200).json({message: "Marca atualizada com sucesso!"})
+        }catch(err){
+            console.error("Erro ao atualizar marca:", err);
+            res.status(500).json({error: err.message})
+        }
+    },
+    async atualizarModelo(req, res){
+        const {id} = req.params;
+        const dados = req.body;
+        try{
+            await loginService.update_model(id, dados);
+            res.status(200).json({message: "Modelo atualizado com sucesso!"})
+        }catch(err){
+            console.error("Erro ao atualizar modelo:", err);
+            res.status(500).json({error: err.message})
+        }
+    },
+    async atualizarServico(req, res){
+        const {id} = req.params;
+        const dados = req.body;
+        try{
+            await loginService.update_service(id, dados);
+            res.status(200).json({message: "Serviço atualizado com sucesso!"})
+        }catch(err){
+            console.error("Erro ao atualizar serviço:", err);
+            res.status(500).json({error: err.message})
+        }
+    },
+    async atualizarManutencao(req, res){
+        const {id} = req.params;
+        const dados = req.body;
+        try{
+            await loginService.update_maintenance(id, dados);
+            res.status(200).json({message: "Manutenção atualizada com sucesso!"})
+        }catch(err){
+            console.error("Erro ao atualizar manutenção:", err);
+            res.status(500).json({error: err.message})
+       }   
     }
 };

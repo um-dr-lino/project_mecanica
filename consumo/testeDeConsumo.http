@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2NDA3NjQ0MywiZXhwIjoxNzY0MDc2NzQzfQ.zWMmSKbCmistt_ZcfohTtVhTdM1yBberT-B0zVIo0gI
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2NDA3OTYwMywiZXhwIjoxNzY0MDc5OTAzfQ.07ldOp4B_Flkmq1kB7JQHbEpq2uUn3IKBg68gIrWtpM
 
 ### Gerar Token
 POST http://localhost:3000/auth/login HTTP/1.1
@@ -115,3 +115,119 @@ x-access-token: {{token}}
 ### Listar usuarios
 GET http://localhost:3000/auth/listarUsuarios HTTP/1.1
 x-access-token: {{token}}
+
+### Deletar usuario
+DELETE http://localhost:3000/auth/deletarUsuario/2 HTTP/1.1
+x-access-token: {{token}}
+{
+    "id": 2
+}
+### Deletar proprietario
+DELETE http://localhost:3000/auth/deletarProprietario/2 HTTP/1.1
+x-access-token: {{token}}
+{
+    "id": 2
+}
+### Deletar veiculo
+DELETE http://localhost:3000/auth/deletarVeiculo/2 HTTP/1.1
+x-access-token: {{token}}
+{
+    "id": 2
+}
+### Deletar marca
+DELETE http://localhost:3000/auth/deletarMarca/2 HTTP/1.1
+x-access-token: {{token}}
+{
+    "id": 2
+}
+### Deletar modelo
+DELETE http://localhost:3000/auth/deletarModelo/2 HTTP/1.1
+x-access-token: {{token}}
+{
+    "id": 2
+}
+### Deletar servico
+DELETE http://localhost:3000/auth/deletarServico/2 HTTP/1.1
+x-access-token: {{token}}
+{
+    "id": 2
+}
+### Deletar manutencao
+DELETE http://localhost:3000/auth/deletarManutencao/2 HTTP/1.1
+x-access-token: {{token}}
+{
+    "id": 2
+}
+### Atualizar usuario
+PUT http://localhost:3000/auth/atualizarUsuario/3 HTTP/1.1
+content-type: application/json  
+x-access-token: {{token}}
+
+{
+    "username": "Lino",
+    "senha": "Senha@123",
+    "nome_completo": "Alysson Lino"
+}
+### Atualizar proprietario
+PUT http://localhost:3000/auth/atualizarProprietario/3 HTTP/1.1
+content-type: application/json
+x-access-token: {{token}}
+
+{
+    "cpf": "222",
+    "nome": "Lino Atualizado", 
+    "fone": "66666"
+}
+### Atualizar veiculo
+PUT http://localhost:3000/auth/atualizarVeiculo/3 HTTP/1.1
+content-type: application/json
+x-access-token: {{token}}
+
+{
+    "plca_veiculo": "ABC-1234",
+    "id_modelo": 2,
+    "id_proprietario": 2,
+    "preco_veiculo": 90000.00,
+    "id_tipo": 1,
+    "ano": 2023
+}   
+### Atualizar marca
+PUT http://localhost:3000/auth/atualizarMarca/3 HTTP/1.1
+content-type: application/json
+x-access-token: {{token}}
+
+{
+    "nome_marca": "Honda"
+}
+### Atualizar modelo
+PUT http://localhost:3000/auth/atualizarModelo/3 HTTP/1.1
+content-type: application/json
+x-access-token: {{token}}
+
+{
+    "nome_modelo": "Civic",
+    "id_marca": 2
+}
+### Atualizar servico
+PUT http://localhost:3000/auth/atualizarServico/3 HTTP/1.1
+content-type: application/json
+x-access-token: {{token}}
+
+{
+    "descricao": "Troca de pneus",
+    "preco": 300.00
+}
+### Atualizar manutencao
+PUT http://localhost:3000/auth/atualizarManutencao/3 HTTP/1.1
+content-type: application/json
+x-access-token: {{token}}
+
+{
+    "id_veiculo": 22,
+    "id_servico": 3,
+    "data_servico": "2024-07-15",
+    "km": 20000,
+    "custo": 750.00,
+    "observacoes": "Troca de pneus e alinhamento"
+}
+
