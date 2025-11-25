@@ -1,5 +1,4 @@
 DROP PROCEDURE IF EXISTS create_new_user; 
-
 CREATE PROCEDURE create_new_user (
     IN p_username VARCHAR(100),
     IN p_senha VARCHAR(255),
@@ -9,7 +8,6 @@ BEGIN
     INSERT INTO usuario (username, senha, nome_completo) 
     VALUES (p_username, p_senha, p_nome_completo);
 END;
-
 DROP PROCEDURE IF EXISTS create_new_owner;
 CREATE PROCEDURE create_new_owner (
     IN p_cpf INT(20),
@@ -20,7 +18,6 @@ BEGIN
     INSERT INTO proprietario (cpf, nome, fone)
     VALUES(p_cpf, p_nome, p_fone);
 END;
-
 DROP PROCEDURE IF EXISTS create_new_manutenance;
 CREATE PROCEDURE create_new_manutenance(
     IN p_id_veiculo INT(11),
@@ -34,7 +31,6 @@ BEGIN
     INSERT INTO manutencao(id_veiculo, id_servico, data_servico, km, custo, observacoes)
     VALUES(p_id_veiculo,p_id_servico,p_data_servico,p_km,p_custo,p_observaoces);
 END;
-
 DROP PROCEDURE IF EXISTS create_new_vehicle;
 CREATE PROCEDURE create_new_vehicle(
     IN p_plca_veiculo VARCHAR(10),
@@ -43,10 +39,37 @@ CREATE PROCEDURE create_new_vehicle(
     IN p_preco_veiculo DECIMAL(12,2),
     IN p_id_tipo INT(11), 
     IN p_ano INT(11)
-
-    INSERT INTO veiculo(plca_veiculo, id_modelo, id_proprietario,preco_veiculo, id_tipo, ano)
-    VALUES(p_plca_veiculo, p_id_modelo, p_id_proprietario, p_preco_veiculo, p_id_tipo, p_ano)
 )
+BEGIN
+    INSERT INTO veiculo(plca_veiculo, id_modelo, id_proprietario,preco_veiculo, id_tipo, ano)
+    VALUES(p_plca_veiculo, p_id_modelo, p_id_proprietario, p_preco_veiculo, p_id_tipo, p_ano);
+END;
+DROP PROCEDURE IF EXISTS create_new_brand;
+CREATE PROCEDURE create_new_brand (
+    IN p_nome_marca VARCHAR(100)
+)
+BEGIN
+    INSERT INTO marca (nome_marca) 
+    VALUES (p_nome_marca);
+END;
+DROP PROCEDURE IF EXISTS create_new_model;
+CREATE PROCEDURE create_new_model (
+    IN p_nome_modelo VARCHAR(100),
+    IN p_id_marca INT(11)
+)
+BEGIN
+    INSERT INTO modelo (nome_modelo, id_marca) 
+    VALUES (p_nome_modelo, p_id_marca);
+END;
+DROP PROCEDURE IF EXISTS create_new_service;
+CREATE PROCEDURE create_new_service (
+    IN p_descricao VARCHAR(255),
+    IN p_preco DECIMAL(12,2)
+)   
+BEGIN
+    INSERT INTO servico (descricao, preco) 
+    VALUES (p_descricao, p_preco);
+END;
 
 
 

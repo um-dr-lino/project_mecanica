@@ -1,4 +1,6 @@
-### Gerar Token para consumir os arquivos
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2NDA3NjQ0MywiZXhwIjoxNzY0MDc2NzQzfQ.zWMmSKbCmistt_ZcfohTtVhTdM1yBberT-B0zVIo0gI
+
+### Gerar Token
 POST http://localhost:3000/auth/login HTTP/1.1
 content-type: application/json
 
@@ -7,10 +9,10 @@ content-type: application/json
     "senha": "admin"
 }
 
-### Cria usuario
+### Criar usuario
 POST http://localhost:3000/auth/criarUsuario HTTP/1.1
 content-type: application/json
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2MzU3MDIyNSwiZXhwIjoxNzYzNTcwNTI1fQ.QmkF-X93j9_9ZpD0OU1RcBmh9z5Pn683xmXVzCBnAKA
+x-access-token: {{token}}
 
 {
     "username": "Lino",
@@ -21,7 +23,7 @@ x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ
 ### Criar proprietario
 POST http://localhost:3000/auth/criaProprietario HTTP/1.1
 content-type: application/json
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2MzU2MzcxMSwiZXhwIjoxNzYzNTY0MDExfQ.ys2QRbcRhl8fkZKyQWkGesauNAC5EakC9TStJWm1Dmc
+x-access-token: {{token}}
 
 {
     "cpf": "111",
@@ -32,7 +34,7 @@ x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ
 ### Criar manutencao
 POST http://localhost:3000/auth/criaManutencao HTTP/1.1
 content-type: application/json
-x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2MzU4NDIwNiwiZXhwIjoxNzYzNTg0NTA2fQ.zJC3n-jMys46m2KL0azz4xm6yUHINRvSMT_uk3_HS5k
+x-access-token: {{token}}
 
 {
     "id_veiculo": 21,
@@ -42,3 +44,74 @@ x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ
     "custo": 500.75,
     "observacoes": "Troca de óleo e filtro"
 }
+
+### Criar veiculo
+POST http://localhost:3000/auth/criarVeiculo HTTP/1.1
+content-type: application/json
+x-access-token: {{token}}
+
+{
+    "plca_veiculo": "XYZ-9876",
+    "id_modelo": 3,
+    "id_proprietario": 1,
+    "preco_veiculo": 85000.00,
+    "id_tipo": 2,
+    "ano": 2022
+}
+
+### Criar marca
+POST http://localhost:3000/auth/criarMarca HTTP/1.1
+content-type: application/json
+x-access-token: {{token}}
+
+{
+    "nome_marca": "Toyota"
+}
+
+### Criar modelo
+POST http://localhost:3000/auth/criarModelo HTTP/1.1
+content-type: application/json
+x-access-token: {{token}}
+
+{
+    "nome_modelo": "Corolla",
+    "id_marca": 1
+}
+
+### Criar servico
+POST http://localhost:3000/auth/criarServico HTTP/1.1
+content-type: application/json
+x-access-token: {{token}}
+
+{
+    "descricao": "Alinhamento e balanceamento",
+    "preco": 120.00
+}
+
+### Listar proprietarios
+GET http://localhost:3000/auth/listarProprietarios HTTP/1.1
+x-access-token: {{token}}
+
+### Listar veiculos
+GET http://localhost:3000/auth/listarVeiculos HTTP/1.1
+x-access-token: {{token}}
+
+### Listar marcas
+GET http://localhost:3000/auth/listarMarcas HTTP/1.1
+x-access-token: {{token}}
+
+### Listar modelos
+GET http://localhost:3000/auth/listarModelos HTTP/1.1
+x-access-token: {{token}}
+
+### Listar servicos
+GET http://localhost:3000/auth/listarServicos HTTP/1.1
+x-access-token: {{token}}
+
+### Listar manutencoes
+GET http://localhost:3000/auth/listarManutencoes HTTP/1.1
+x-access-token: {{token}}
+
+### Listar usuarios
+GET http://localhost:3000/auth/listarUsuarios HTTP/1.1
+x-access-token: {{token}}

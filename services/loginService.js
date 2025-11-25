@@ -24,7 +24,6 @@ export const loginService = {
     async listar_usuarios(){
         return await loginModel.getAll();
     },
-
     async create_new_user(username, password, fullname){
         return await loginModel.createUser(username, password, fullname);
     },
@@ -36,6 +35,33 @@ export const loginService = {
     },
     async create_new_vehicle(plca_veiculo, id_modelo, id_proprietario,preco_veiculo, id_tipo, ano){
         return await loginModel.createVehicle(plca_veiculo, id_modelo, id_proprietario,preco_veiculo, id_tipo, ano)
+    },
+    async create_new_brand(nome_marca){
+        return await loginModel.createBrand(nome_marca)
+    },
+    async create_new_model(nome_modelo, id_marca){
+        return await loginModel.createModel(nome_modelo, id_marca)
+    },
+    async create_new_service(descricao, preco){
+        return await loginModel.createService(descricao, preco)
+    },
+    async listar_proprietarios(){
+        return await loginModel.getAllOwners();
+    },
+    async listar_veiculos(){
+        return await loginModel.getAllVehicles();
+    },
+    async listar_marcas(){
+        return await loginModel.getAllBrands();
+    },
+    async listar_modelos(){
+        return await loginModel.getAllModels();
+    },
+    async listar_servicos(){
+        return await loginModel.getAllServices();
+    },
+    async listar_manutencoes(){
+        return await loginModel.getAllMaintenances();
     }
 }
 

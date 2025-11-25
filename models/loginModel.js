@@ -28,5 +28,44 @@ export const loginModel = {
     const sql = 'CALL create_new_vehicle(?,?,?,?,?,?)';
     const [result] = await pool.query(sql,[plca_veiculo, id_modelo, id_proprietario,preco_veiculo, id_tipo, ano])
     return result;
+  },
+  async createBrand(nome_marca){
+    const sql = 'CALL create_new_brand(?)';
+    const [result] = await pool.query(sql,[nome_marca]);
+    return result;
+  },
+  async createModel(nome_modelo, id_marca){
+    const sql = 'CALL create_new_model(?,?)';
+    const [result] = await pool.query(sql,[nome_modelo, id_marca]);
+    return result;
+  },
+  async createService(descricao, preco){
+    const sql = 'CALL create_new_service(?,?)';
+    const [result] = await pool.query(sql,[descricao, preco]);
+    return result;
+  },
+  async getAllOwners(){
+    const [rows] = await pool.query('SELECT * FROM getallowners');
+    return rows;
+  },
+  async getAllVehicles(){
+    const [rows] = await pool.query('SELECT * FROM getallvehicles');
+    return rows;
+  },
+  async getAllBrands(){
+    const [rows] = await pool.query('SELECT * FROM getallbrands');
+    return rows;
+  },
+  async getAllModels(){
+    const [rows] = await pool.query('SELECT * FROM getallmodels');
+    return rows;
+  },
+  async getAllServices(){
+    const [rows] = await pool.query('SELECT * FROM getallservices');
+    return rows;
+  },
+  async getAllMaintenances(){
+    const [rows] = await pool.query('SELECT * FROM getallmaintenances');
+    return rows;
   }
 }

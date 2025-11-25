@@ -9,9 +9,19 @@ router.post('/criarUsuario', verificaJWT, loginController.criarUsuario)
 router.post('/criaProprietario', verificaJWT, loginController.criaProprietario)
 router.post('/criaManutencao', verificaJWT, loginController.criaManutencao)
 router.post('/criarVeiculo', verificaJWT, loginController.criarVeiculo)
+router.post('/criarMarca', verificaJWT, loginController.criarMarca)
+router.post('/criarModelo', verificaJWT, loginController.criarModelo)
+router.post('/criarServico', verificaJWT, loginController.criarServico)
+
 
 // só os gets
 router.get('/listarUsuarios', verificaJWT, loginController.listar_usuarios)
+router.get('/listarProprietarios', verificaJWT, loginController.listar_proprietarios)
+router.get('/listarVeiculos', verificaJWT, loginController.listar_veiculos)
+router.get('/listarMarcas', verificaJWT, loginController.listar_marcas)
+router.get('/listarModelos', verificaJWT, loginController.listar_modelos)
+router.get('/listarServicos', verificaJWT, loginController.listar_servicos)
+router.get('/listarManutencoes', verificaJWT, loginController.listar_manutencoes)
 
 // só os puts
  

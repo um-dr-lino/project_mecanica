@@ -88,5 +88,96 @@ export const loginController = {
             console.error("Erro ao criar veículo")
             return res.status(500).json({message: err.sqlMessage})
         }
+    },
+    async criarMarca(req,res){
+        const {nome_marca} = req.body || {};
+        if (!nome_marca){
+            return res.status(400).json({message: "O campo nome_marca é obrigatório."});
+        }
+        try{
+            await loginService.create_new_brand(nome_marca);
+            return res.status(201).json({message: "Marca criada com sucesso!"})
+        }catch(err){
+            console.error("Erro ao criar marca")
+            return res.status(500).json({message: err.sqlMessage})
+        }
+    },
+    async criarModelo(req,res){
+        const {nome_modelo, id_marca} = req.body || {};
+        const obrigatorios = [nome_modelo, id_marca];
+        const faltando = obrigatorios.filter(campo => !req.body[campo]);
+        if (faltando.length > 0){
+            return res.status(400).json({error: `Campos obrigatórios ausentes, ${faltando.join(', ')}`});
+        }
+        try{
+            await loginService.create_new_model(nome_modelo, id_marca);
+            return res.status(201).json({message: "Modelo criado com sucesso!"})
+        }catch(err){
+            console.error("Erro ao criar modelo")
+            return res.status(500).json({message: err.sqlMessage})
+        }
+    },
+    async criarServico(req,res){
+        const {descricao_servico, duracao_media} = req.body || {};
+        const obrigatorios = [descricao_servico, duracao_media];
+        const faltando = obrigatorios.filter(campo => !req.body[campo]);
+        if (faltando.length > 0){
+            return res.status(400).json({error: `Campos obrigatórios ausentes, ${faltando.join(', ')}`});
+        }
+        try{
+            await loginService.create_new_service(descricao_servico, duracao_media);
+            return res.status(201).json({message: "Serviço criado com sucesso!"})
+        }catch(err){
+            console.error("Erro ao criar serviço")
+            return res.status(500).json({message: err.sqlMessage})
+        }
+    },
+    async listar_proprietarios(req, res) {
+        try{
+            const listagem = await loginService.listar_proprietarios()
+            res.json(listagem)
+        }catch(err){
+            res.status(500).json({error: err.message})
+        }
+    },
+    async listar_veiculos(req, res) {
+        try{
+            const listagem = await loginService.listar_veiculos()
+            res.json(listagem)
+        }catch(err){
+            res.status(500).json({error: err.message})
+        }
+    },
+    async listar_marcas(req, res) {
+        try{
+            const listagem = await loginService.listar_marcas()
+            res.json(listagem)
+        }catch(err){
+            res.status(500).json({error: err.message})
+        }
+    },
+    async listar_modelos(req, res) {
+        try{
+            const listagem = await loginService.listar_modelos()
+            res.json(listagem)
+        }catch(err){
+            res.status(500).json({error: err.message})
+        }
+    },
+    async listar_servicos(req, res) {
+        try{
+            const listagem = await loginService.listar_servicos()
+            res.json(listagem)
+        }catch(err){
+            res.status(500).json({error: err.message})
+        }
+    },
+    async listar_manutencoes(req, res) {
+        try{
+            const listagem = await loginService.listar_manutencoes()
+            res.json(listagem)
+        }catch(err){
+            res.status(500).json({error: err.message})
+        }
     }
 };
