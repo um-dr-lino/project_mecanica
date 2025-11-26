@@ -73,20 +73,39 @@ export const loginController = {
             return res.status(500).json({message: err.sqlMessage})
         }
     },
-    async criarVeiculo(req,res){
-        const {plca_veiculo, id_modelo, id_proprietario,preco_veiculo, id_tipo, ano} = req.body || {};
-        const obrigatorios = [plca_veiculo, id_modelo, id_proprietario,preco_veiculo, id_tipo, ano];
-        const faltando = obrigatorios.filter(campo => !req.body[campo]);
+    async criarVeiculo(req, res) {
+        const { plca_veiculo, id_modelo, id_proprietario, preco_veiculo, ano } = req.body || {};
 
-        if (faltando.length > 0){
-            return res.status(400).json({error: `Campos obrigatórios ausentes, ${faltando.join(', ')}`});
+        const obrigatorios = { plca_veiculo, id_modelo, id_proprietario, preco_veiculo, ano };
+
+        const faltando = Object.entries(obrigatorios)
+            .filter(([key, value]) => value === undefined || value === null || value === "")
+            .map(([key]) => key);
+
+        if (faltando.length > 0) {
+            return res.status(400).json({
+                error: `Campos obrigatórios ausentes: ${faltando.join(', ')}`
+            });
         }
-        try{
-            await loginService.create_new_vehicle(plca_veiculo, id_modelo, id_proprietario,preco_veiculo, id_tipo, ano);
-            return res.status(201).json({message: "Veiculo criado com sucesso!"})
-        }catch(err){
-            console.error("Erro ao criar veículo")
-            return res.status(500).json({message: err.sqlMessage})
+
+        try {
+            let tipo_veiculo = 0;
+
+            if (preco_veiculo <= 45000) {
+                tipo_veiculo = 1;  // popular
+            } else if (preco_veiculo > 45000 && preco_veiculo <= 90000) {
+                tipo_veiculo = 2;  // luxo
+            } else {
+                tipo_veiculo = 3;  // super luxo
+            }
+
+            await loginService.create_new_vehicle(plca_veiculo,id_modelo,id_proprietario,preco_veiculo,tipo_veiculo,ano);
+
+            return res.status(201).json({ message: "Veículo criado com sucesso!" });
+
+        } catch (err) {
+            console.error("Erro ao criar veículo:", err);
+            return res.status(500).json({ message: err.sqlMessage || err.message });
         }
     },
     async criarMarca(req,res){

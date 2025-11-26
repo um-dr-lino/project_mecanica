@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2NDA3OTYwMywiZXhwIjoxNzY0MDc5OTAzfQ.07ldOp4B_Flkmq1kB7JQHbEpq2uUn3IKBg68gIrWtpM
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2NDE2MzAwNiwiZXhwIjoxNzY0MTYzMzA2fQ.wRvZglVkfGdfViudO27zZW77vF3_tvxS1YpfTFcflko
 
 ### Gerar Token
 POST http://localhost:3000/auth/login HTTP/1.1
@@ -55,7 +55,6 @@ x-access-token: {{token}}
     "id_modelo": 3,
     "id_proprietario": 1,
     "preco_veiculo": 85000.00,
-    "id_tipo": 2,
     "ano": 2022
 }
 

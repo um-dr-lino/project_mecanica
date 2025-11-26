@@ -33,7 +33,7 @@ BEGIN
 END;
 DROP PROCEDURE IF EXISTS create_new_vehicle;
 CREATE PROCEDURE create_new_vehicle(
-    IN p_plca_veiculo VARCHAR(10),
+    IN p_placa_veiculo VARCHAR(10),
     IN p_id_modelo INT(11),
     IN p_id_proprietario INT(11),
     IN p_preco_veiculo DECIMAL(12,2),
@@ -41,8 +41,8 @@ CREATE PROCEDURE create_new_vehicle(
     IN p_ano INT(11)
 )
 BEGIN
-    INSERT INTO veiculo(plca_veiculo, id_modelo, id_proprietario,preco_veiculo, id_tipo, ano)
-    VALUES(p_plca_veiculo, p_id_modelo, p_id_proprietario, p_preco_veiculo, p_id_tipo, p_ano);
+    INSERT INTO veiculo(placa_veiculo, id_modelo, id_proprietario,preco_veiculo, id_tipo, ano)
+    VALUES(p_placa_veiculo, p_id_modelo, p_id_proprietario, p_preco_veiculo, p_id_tipo, p_ano);
 END;
 DROP PROCEDURE IF EXISTS create_new_brand;
 CREATE PROCEDURE create_new_brand (
@@ -150,7 +150,7 @@ END;
 DROP PROCEDURE IF EXISTS update_vehicle;
 CREATE PROCEDURE update_vehicle (
     IN p_id INT(11),
-    IN p_plca_veiculo VARCHAR(10),
+    IN p_placa_veiculo VARCHAR(10),
     IN p_id_modelo INT(11),
     IN p_id_proprietario INT(11),
     IN p_preco_veiculo DECIMAL(12,2),
@@ -159,7 +159,7 @@ CREATE PROCEDURE update_vehicle (
 )   
 BEGIN
     UPDATE veiculo 
-    SET plca_veiculo = p_plca_veiculo,
+    SET placa_veiculo = p_placa_veiculo,
         id_modelo = p_id_modelo,
         id_proprietario = p_id_proprietario,
         preco_veiculo = p_preco_veiculo,
