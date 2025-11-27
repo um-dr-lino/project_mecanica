@@ -123,7 +123,7 @@ export const loginController = {
     },
     async criarModelo(req,res){
         const {nome_modelo, id_marca} = req.body || {};
-        const obrigatorios = [nome_modelo, id_marca];
+        const obrigatorios = ['nome_modelo', 'id_marca'];
         const faltando = obrigatorios.filter(campo => !req.body[campo]);
         if (faltando.length > 0){
             return res.status(400).json({error: `Campos obrigatórios ausentes, ${faltando.join(', ')}`});
@@ -137,18 +137,18 @@ export const loginController = {
         }
     },
     async criarServico(req,res){
-        const {descricao_servico, duracao_media} = req.body || {};
-        const obrigatorios = [descricao_servico, duracao_media];
+        const {nome_servico, descricao_servico} = req.body || {};
+        const obrigatorios = ['nome_servico', 'descricao_servico'];
         const faltando = obrigatorios.filter(campo => !req.body[campo]);
         if (faltando.length > 0){
             return res.status(400).json({error: `Campos obrigatórios ausentes, ${faltando.join(', ')}`});
         }
         try{
-            await loginService.create_new_service(descricao_servico, duracao_media);
+            await loginService.create_new_service(nome_servico, descricao_servico);
             return res.status(201).json({message: "Serviço criado com sucesso!"})
         }catch(err){
             console.error("Erro ao criar serviço")
-            return res.status(500).json({message: err.sqlMessage})
+            return res.status(500).json({message: `Esse aqui e o erro, ${err.sqlMessage}`})
         }
     },
     async listar_proprietarios(req, res) {

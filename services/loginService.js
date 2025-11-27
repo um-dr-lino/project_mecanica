@@ -42,8 +42,8 @@ export const loginService = {
     async create_new_model(nome_modelo, id_marca){
         return await loginModel.createModel(nome_modelo, id_marca)
     },
-    async create_new_service(descricao, preco){
-        return await loginModel.createService(descricao, preco)
+    async create_new_service(nome_servico, descricao_servico){
+        return await loginModel.createService(nome_servico, descricao_servico)
     },
     async listar_proprietarios(){
         return await loginModel.getAllOwners();

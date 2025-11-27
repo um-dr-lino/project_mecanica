@@ -5,7 +5,7 @@ import fs from 'fs/promises'
 
 dotenv.config();
 
-const { DB_HOST = '127.0.0.1', DB_USER = 'root', DB_PASS = '', DB_NAME, DB_PORT } = process.env;
+const { DB_HOST = '127.0.0.1', DB_USER = 'root', DB_PASS = 'root', DB_NAME, DB_PORT } = process.env;
 const parsedPass = DB_PASS
 
 export async function initDb() {
@@ -75,6 +75,13 @@ export async function initDb() {
       nome_marca VARCHAR(100) NOT NULL UNIQUE
     );
   `);
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS usuario_proprietario (
+    id_usuario int,
+    id_proprietario int
+    );
+    `);
 
   await pool.query(`
     CREATE TABLE IF NOT EXISTS modelo (

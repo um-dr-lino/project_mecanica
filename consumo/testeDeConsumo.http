@@ -1,5 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2NDE2MzAwNiwiZXhwIjoxNzY0MTYzMzA2fQ.wRvZglVkfGdfViudO27zZW77vF3_tvxS1YpfTFcflko
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTc2NDI4MjIzOSwiZXhwIjoxNzY0MjgyNTM5fQ.JZRFeNlJHDpog8tE7-xbd65zMJEvhdNtMzYr-Lw540Q
 ### Gerar Token
 POST http://localhost:3000/auth/login HTTP/1.1
 content-type: application/json
@@ -37,7 +36,7 @@ content-type: application/json
 x-access-token: {{token}}
 
 {
-    "id_veiculo": 21,
+    "id_veiculo": 3,
     "id_servico": 2,
     "data_servico": "2024-06-20",
     "km": 15000,
@@ -53,7 +52,7 @@ x-access-token: {{token}}
 {
     "plca_veiculo": "XYZ-9876",
     "id_modelo": 3,
-    "id_proprietario": 1,
+    "id_proprietario": 3,
     "preco_veiculo": 85000.00,
     "ano": 2022
 }
@@ -64,7 +63,7 @@ content-type: application/json
 x-access-token: {{token}}
 
 {
-    "nome_marca": "Toyota"
+    "nome_marca": "Fiat"
 }
 
 ### Criar modelo
@@ -73,8 +72,8 @@ content-type: application/json
 x-access-token: {{token}}
 
 {
-    "nome_modelo": "Corolla",
-    "id_marca": 1
+    "nome_modelo": "Toro",
+    "id_marca": 5
 }
 
 ### Criar servico
@@ -83,8 +82,8 @@ content-type: application/json
 x-access-token: {{token}}
 
 {
-    "descricao": "Alinhamento e balanceamento",
-    "preco": 120.00
+    "nome_servico": "Cambagem",
+    "descricao_servico": "Rodizio de pneu"
 }
 
 ### Listar proprietarios
@@ -118,12 +117,14 @@ x-access-token: {{token}}
 ### Deletar usuario
 DELETE http://localhost:3000/auth/deletarUsuario/2 HTTP/1.1
 x-access-token: {{token}}
+
 {
-    "id": 2
+    "id": 5
 }
 ### Deletar proprietario
 DELETE http://localhost:3000/auth/deletarProprietario/2 HTTP/1.1
 x-access-token: {{token}}
+
 {
     "id": 2
 }

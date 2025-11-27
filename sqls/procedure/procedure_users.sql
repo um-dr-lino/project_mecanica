@@ -63,19 +63,19 @@ BEGIN
 END;
 DROP PROCEDURE IF EXISTS create_new_service;
 CREATE PROCEDURE create_new_service (
-    IN p_descricao VARCHAR(255),
-    IN p_preco DECIMAL(12,2)
+    IN p_nome_servico VARCHAR(100),
+    IN p_descricao_servico VARCHAR(255)
 )   
 BEGIN
-    INSERT INTO servico (descricao, preco) 
-    VALUES (p_descricao, p_preco);
+    INSERT INTO servico (nome_servico, descr_servico) 
+    VALUES (p_nome_servico, p_descricao_servico);
 END;
 DROP PROCEDURE IF EXISTS delete_user;
 CREATE PROCEDURE delete_user (
     IN p_id INT(11)
 )
 BEGIN
-    DELETE FROM usuario WHERE id = p_id;
+    DELETE FROM usuario WHERE id_usuario = p_id;
 END;
 DROP PROCEDURE IF EXISTS delete_owner;
 CREATE PROCEDURE delete_owner (
